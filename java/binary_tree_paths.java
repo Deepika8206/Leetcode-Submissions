@@ -1,0 +1,45 @@
+// ======================================
+// LeetCode Problem: binary tree paths
+// Language: java
+// Link: https://leetcode.com/problems/binary-tree-paths/
+// Synced by: LinkCode
+// Date: 11/19/2026, 2:26:54 PM
+// ======================================
+
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public List<String> binaryTreePaths(TreeNode root) {
+        List<String> result = new ArrayList<>();
+        helper(root,"",result);
+        return result;
+    }
+    private void helper(TreeNode node , String path , List<String> result){
+        if(node== null)return;
+        if(path.length() ==0 ){
+            path=""+node.val;
+        }else{
+            path = path +"->"+node.val;
+        }
+        if(node.left==null && node.right==null){
+            result.add(path);
+            return;
+        }
+        helper(node.left,path,result);
+        helper(node.right,path,result);
+    }
+}
